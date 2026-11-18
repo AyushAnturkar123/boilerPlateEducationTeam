@@ -28,6 +28,15 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });
 });
 
+// error handler: ctaches anything that throws, always answers with JSON
+app.use((err, req, res, next) => {
+  console.error(err);
+  const status = err.status || 500;
+  res.status(status).json({
+    error: status === 500 ? 'Something went wrong': err.message,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
