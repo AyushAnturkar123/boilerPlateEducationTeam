@@ -4,6 +4,7 @@ import cors from 'cors';
 import exampleRouter from './routes/example.js';
 import exercisesRouter from './routes/exercises.js';
 import workoutsRouter from './routes/workouts.js';
+import summaryRouter from './routes/summary.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.get('/health', (req, res) => {
 app.use('/api/example', exampleRouter);
 app.use('/api/exercises', exercisesRouter);
 app.use('/api/workouts', workoutsRouter);
+app.use('/api/summary', summaryRouter);
 
 // 404 for anything else
 app.use((req, res) => {
